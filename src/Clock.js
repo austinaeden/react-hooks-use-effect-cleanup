@@ -5,10 +5,16 @@ function Clock() {
 
   useEffect(() => {
     setInterval(() => {
+    const addTime = setInterval(() => {
       setTime(new Date());
     }, 1000);
   }, []);
 
+  // return a cleaned function  
+  return function cleanup() {
+    clearInterval(addTime);
+  };
+}, []);
   return <div>{time.toString()}</div>;
 }
 
